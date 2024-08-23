@@ -35,7 +35,7 @@ expressApp.listen(PORT, () => {
 expressApp.get("/test", (req, res) => {
     res.send("yooooooooooooooooooooooo")
 })
-
+ 
 
 expressApp.post("/api/auth/signup", async (req, res) => {
     const allUsers = await userModel.find({})
