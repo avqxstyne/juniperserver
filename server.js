@@ -155,90 +155,6 @@ expressApp.post("/api/auth/signin", async (req, res) => {
     });
     
 });
-async function checkDuplicateUsernameOrEmail(req, res, next) {
-    // find the paramter username 
-
-    const allUsers = await userModel.find({})
-
-    const userData = []
-    for (let i = 0; i < allUsers.length; i++) {
-        userData.push({
-            email: allUsers[i].email, 
-            username: allUsers[i].username,
-            password: allUsers[i].password
-        })
-    }
-
-
-    for (let i = 0; i < userData.length; i++) {
-        if (userData[i].email == req.body.email) {
-            res.send("Operation unsuccessful: Email in use.")
-            console.log("Operation unsuccessful: Email in use.")
-
-            return res.status(200).send();
-        }
-        if (userData[i].username == req.body.username) {
-            res.send("Operation unsuccessful: Username in use.")
-            console.log("Operation unsuccessful: Username in use.")
-
-            return res.status(200).send();
-        }
-    }
-    
-    
-    
-    
-    //.then((user) => {
-    //     if (user) {
-    //         res.status(400).send({ message: "Operation unsuccessful: Username is already taken!" });
-    //         return;
-    //     }
-
-    //     userModel.findOne({
-    //         email: req.body.email
-    //     }).then((user) => {
-    //         if (user) {
-    //             res.status(400).send({ message: "Operation unsuccessful: Email is already in use!" });
-    //             return;
-    //         }
-    //     }).catch((err) => {
-    //         res.status(500).send({ message: err });
-    //         return;
-    //     })
-
-    // }).catch((err) => {
-    //     res.status(500).send({ message: err });
-    //     return;
-    // })
-    
-
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // _______________ SOCKET SERVER CREATION_______________________________________________________________________________
 const defaultValue = ''
@@ -251,7 +167,7 @@ const io = new Server(8000, {
 });
 // _______________ SOCKET SERVER CREATION_______________________________________________________________________________
 
-connect();
+connect(); // mongo?
 
 // ____ SOCKET SERVER OPERATION_______________________________________________________________________________
 
