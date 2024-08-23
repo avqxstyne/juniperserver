@@ -32,6 +32,9 @@ expressApp.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
   
+expressApp.get("/test", (req, res) => {
+    res.send("yooooooooooooooooooooooo")
+})
 
 
 expressApp.post("/api/auth/signup", async (req, res) => {
