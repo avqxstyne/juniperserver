@@ -200,13 +200,18 @@ io.on('connection', socket => {
             socket.broadcast.to(documentId).emit('receive-changes', delta)
         })
         socket.on('save-document', async (data, name, lastOpened) => {
-            console.log('save called')
-            console.log(name)
-            console.log(lastOpened)
-
+            console.log("red")
             await docModel.findByIdAndUpdate(documentId, {data, name, lastOpened})
         })
+        socket.on('delete-document', async (data, name, lastOpened) => {
+            console.log("Were in the delete socket")
+    
+            await docModel.findByIdAndDelete(documentId)
+            socket.emit("send-it-back", "yaur")
+        })
     });
+
+
 
     socket.on('get-all', async (currentLogin) => {
         const allDocuments = await docModel.find({author: currentLogin});
